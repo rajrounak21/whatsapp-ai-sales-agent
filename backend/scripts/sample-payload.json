@@ -1,0 +1,39 @@
+{
+    "object": "whatsapp_business_account",
+    "entry": [
+        {
+            "id": "WABA_ID",
+            "changes": [
+                {
+                    "field": "messages",
+                    "value": {
+                        "messaging_product": "whatsapp",
+                        "metadata": {
+                            "display_phone_number": "919999900001",
+                            "phone_number_id": "PHONE_TENANT_A"
+                        },
+                        "contacts": [
+                            {
+                                "profile": {
+                                    "name": "Rahul"
+                                },
+                                "wa_id": "919812345678"
+                            }
+                        ],
+                        "messages": [
+                            {
+                                "from": "919812345678",
+                                "id": "wamid.ABC123",
+                                "timestamp": "1727760000",
+                                "type": "text",
+                                "text": {
+                                    "body": "Hi, 2BHK ka price kya hai?"
+                                }
+                            }
+                        ]
+                    }
+                }
+            ]
+        }
+    ]
+}

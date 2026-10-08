@@ -1,0 +1,23 @@
+# dependencies
+node_modules/
+.venv/
+__pycache__/
+*.pyc
+
+# build output
+frontend/dist/
+
+# environment (secrets — never commit)
+.env
+.env.local
+
+# assignment spec (not part of the submission repo)
+requirements.md
+
+# logs
+*.log
+
+# editor/tooling
+.qodo/
+.vscode/
+.idea/

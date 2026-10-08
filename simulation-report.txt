@@ -1,0 +1,33 @@
+[SIMULATE] run id=4983448 webhook=http://localhost:4000/webhook/whatsapp
+[DB] MongoDB connected
+[SIMULATE] running Test 1 - Concurrency (20 leads) ...
+[SIMULATE] Test 1 - Concurrency (20 leads): PASS
+[SIMULATE] running Test 2 - Duplicate message ...
+[SIMULATE] Test 2 - Duplicate message: PASS
+[SIMULATE] running Test 3 - Order + memory ...
+[SIMULATE] Test 3 - Order + memory: PASS
+[SIMULATE] running Test 4 - Tenant isolation ...
+[SIMULATE] Test 4 - Tenant isolation: PASS
+
+==================== SIMULATION REPORT ====================
+Test 1 - Concurrency (20 leads)
+  Replies received      : 20 / 20           PASS
+  Webhook max response  : 156 ms            PASS
+  Avg time to reply     : 18.8 s
+  Slowest time to reply : 40.7 s
+
+Test 2 - Duplicate message (sent 3x)
+  Replies for wamid.sim4983448: 1                 PASS
+  messages saved for id (must be 1): 1
+
+Test 3 - Order + memory
+  Replies in order      : yes               PASS
+  Remembered name Amit  : yes               PASS
+  last reply: Aapka naam Amit hai.
+
+Test 4 - Tenant isolation
+  Leaked Tenant A data  : no                PASS
+  tenant B reply: Sorry, I can only help with information about FitZone Gym. Let me know if you have any questions about our gym services!
+
+============================================================
+[SIMULATE] ALL TESTS PASSED

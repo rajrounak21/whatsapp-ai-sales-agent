@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#25d366" />
+      <stop offset="100%" stop-color="#128c7e" />
+    </linearGradient>
+    <filter id="dropShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#000000" flood-opacity="0.3" />
+    </filter>
+  </defs>
+  <!-- Background Circle / Squircle -->
+  <rect x="5" y="5" width="90" height="90" rx="28" fill="url(#bgGrad)" filter="url(#dropShadow)"/>
+  
+  <!-- Chat Bubble Icon Path -->
+  <path d="M72 46.5c0-11.3-10.3-20.5-23-20.5S26 35.2 26 46.5c0 4.2 1.4 8.1 3.9 11.3L26 69l12.1-3.6c3.2 1.1 6.8 1.6 10.9 1.6 12.7 0 23-9.2 23-20.5z" fill="#ffffff"/>
+  
+  <!-- AI Sparkle / Star Icon inside -->
+  <path d="M57 32l2.5 5.5L65 40l-5.5 2.5L57 48l-2.5-5.5L49 40l5.5-2.5z" fill="#1f6feb"/>
+  <path d="M41 45l1.5 3.5L46 50l-3.5 1.5L41 55l-1.5-3.5L36 50l3.5-1.5z" fill="#128c7e"/>
+</svg>
