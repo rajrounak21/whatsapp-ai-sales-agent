@@ -265,7 +265,7 @@ Four tests, report saved in [`simulation-report.txt`](simulation-report.txt):
 
 | Test | What it proves | Result |
 |---|---|---|
-| 1 — Concurrency | 20 leads at once: webhook `<200 ms`, all 20 replied | PASS (max webhook 156 ms, 20/20) |
+| 1 — Concurrency | 20 leads at once: webhook `<200 ms`, all 20 replied | PASS (max webhook 87 ms, 20/20, avg reply 20.4 s) |
 | 2 — Duplicate | Same message sent 3× → exactly 1 reply, 1 saved doc | PASS |
 | 3 — Order + memory | "Mera naam Amit hai" later → reply remembers the name | PASS |
 | 4 — Tenant isolation | Tenant A's data never appears in Tenant B's replies | PASS |
