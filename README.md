@@ -11,6 +11,8 @@ A WhatsApp CRM backend where incoming customer messages are answered by an AI ag
 | Dashboard (Vite) | `:5173` | `npm run dev` |
 | MongoDB / Redis | `:27017` / `:6379` | `docker compose up -d` |
 
+**Contents:** [1. Run it](#1-run-it--step-by-step) · [2. Architecture](#2-architecture) · [3. Message order](#3-how-messages-of-the-same-lead-stay-in-order) · [4. Duplicate prevention](#4-how-duplicate-replies-are-prevented) · [5. Tenant isolation](#5-how-tenants-never-see-each-others-data) · [6. Reliability](#6-reliability) · [7. API reference](#7-api-reference) · [8. Data model](#8-data-model) · [9. Simulation](#9-simulation) · [10. Production plan](#10-production-plan--10000-leads-at-once) · [11. Bonus features](#11-bonus-features-done)
+
 ## 🎬 Demo & submission
 
 | Item | Where |
