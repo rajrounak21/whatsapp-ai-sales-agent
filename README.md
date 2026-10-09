@@ -18,7 +18,7 @@ A WhatsApp CRM backend where incoming customer messages are answered by an AI ag
 | Dashboard (Vite) | `:5173` | `npm run dev` |
 | MongoDB / Redis | `:27017` / `:6379` | `docker compose up -d` |
 
-**Contents:** [1. Run it](#1-run-it--step-by-step) · [2. Architecture](#2-architecture) · [3. Message order](#3-how-messages-of-the-same-lead-stay-in-order) · [4. Duplicate prevention](#4-how-duplicate-replies-are-prevented) · [5. Tenant isolation](#5-how-tenants-never-see-each-others-data) · [6. Reliability](#6-reliability) · [7. API reference](#7-api-reference) · [8. Data model](#8-data-model) · [9. Simulation](#9-simulation) · [10. Production plan](#10-production-plan--10000-leads-at-once) · [11. Bonus features](#11-bonus-features-done)
+**Contents:** [1. Run it](#1-run-it--step-by-step) · [2. Architecture](#2-architecture) · [3. Message order](#3-how-messages-of-the-same-lead-stay-in-order) · [4. Duplicate prevention](#4-how-duplicate-replies-are-prevented) · [5. Tenant isolation](#5-how-tenants-never-see-each-others-data) · [6. Reliability](#6-reliability) · [7. API reference](#7-api-reference) · [8. Data model](#8-data-model) · [9. Simulation](#9-simulation) · [10. Production plan](#10-production-plan--10000-leads-at-once) · [11. Bonus features](#11-bonus-features-done) · [12. Troubleshooting](#12-troubleshooting)
 
 ## 🎬 Demo & submission
 
@@ -297,5 +297,17 @@ From the assignment's bonus list:
 | **Unread badge** | WhatsApp-style green counter on each lead: `unreadCount` = customer messages newer than `lastOpenedAt`; opening the chat marks it read (instantly on click, confirmed on next 3 s poll) |
 
 Dashboard proof: [`screenshot/`](screenshot/) shows stat cards, AI toggle, and human replies tagged `HUMAN` in the chat.
+
+---
+
+## 12. Troubleshooting
+
+| Symptom | Cause | Fix |
+|---|---|---|
+| `EADDRINUSE` on `:4000` | An old backend process is still running | Kill it (Windows: `Get-NetTCPConnection -LocalPort 4000 \| % { Stop-Process -Id $_.OwningProcess }`) or close its terminal, then `npm run dev` |
+| API returns `401` instead of `404` | The request has no token — the route is protected | Add `Authorization: Bearer <token>` (from `POST /api/auth/login`) or use the browser's httpOnly cookie |
+| Replies are slow (20–40 s) during `npm run simulate` | Groq free-tier rate limit (`429`) under 20 parallel calls — retries with backoff | Normal for the free tier; single messages take 6–8 s. A paid key removes the throttle |
+| Dashboard shows no AI reply, `sender:"fallback"` in the chat | The agent (`:8000`) is down or `GROQ_API_KEY` is missing | `curl localhost:8000/health` — start `python run.py` in `ai-agents/`, check `.env` |
+| New leads/messages don't appear | Frontend polling stopped or backend restarted | Keep all 3 processes running (`backend`, `ai-agents`, `frontend`); dashboard refreshes every 3 s |
 
 
