@@ -1,5 +1,12 @@
 # Multi-Tenant WhatsApp AI Sales Agent
 
+![Node.js](https://img.shields.io/badge/Node.js-20.x-339933?logo=nodedotjs&logoColor=white)
+![Express](https://img.shields.io/badge/Express-4.x-000000?logo=express&logoColor=white)
+![MongoDB](https://img.shields.io/badge/MongoDB-7.x-47A248?logo=mongodb&logoColor=white)
+![Redis](https://img.shields.io/badge/Redis-BullMQ-DC382D?logo=redis&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3.11-FastAPI-3776AB?logo=python&logoColor=white)
+![React](https://img.shields.io/badge/React-Vite-61DAFB?logo=react&logoColor=black)
+
 A WhatsApp CRM backend where incoming customer messages are answered by an AI agent — per tenant, in order, without duplicates. Meta-style webhooks land on a fast Node.js API, a BullMQ queue debounces and schedules the work, and a Python (FastAPI + LangGraph) agent builds a tenant-scoped prompt and calls Groq to reply.
 
 **Stack:** Node.js + Express + Mongoose (CommonJS) · MongoDB · Redis + BullMQ · Python FastAPI + LangGraph + Groq · React (Vite) dashboard
