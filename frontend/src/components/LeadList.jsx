@@ -37,7 +37,12 @@ export default function LeadsList({ leads, selectedId, onSelect }) {
                             className={`lead-item ${selectedId === id ? "active" : ""}`}
                             onClick={() => onSelect(id)}
                         >
-                            <div className="lead-avatar">{initials(lead.name)}</div>
+                            <div className="lead-avatar-wrap">
+                                <div className="lead-avatar">{initials(lead.name)}</div>
+                                {lead.unreadCount > 0 && (
+                                    <span className="unread-badge">{lead.unreadCount > 99 ? "99+" : lead.unreadCount}</span>
+                                )}
+                            </div>
                             <div className="lead-info">
                                 <div className="lead-name">
                                     {lead.name || lead.phone}

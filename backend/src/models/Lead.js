@@ -23,6 +23,10 @@ const leadschema = new mongoose.Schema({
 
     lastMessageAt: {
         type: Date
+    },
+
+    lastOpenedAt: {
+        type: Date
     }
 
 

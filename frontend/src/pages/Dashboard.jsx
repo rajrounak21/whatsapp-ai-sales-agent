@@ -57,6 +57,12 @@ export default function Dashboard({ auth, onLogout }) {
 
     const selectedLead = leads.find(l => (l.leadId || l._id) === selectedId) || null;
 
+    function handleSelect(id) {
+        setSelectedId(id);
+        // Instant clear — server confirms on next poll
+        setLeads(prev => prev.map(l => ((l.leadId || l._id) === id ? { ...l, unreadCount: 0 } : l)));
+    }
+
     return (
         <div className="app">
             <header className="header">
@@ -73,7 +79,7 @@ export default function Dashboard({ auth, onLogout }) {
             <StatsCards stats={stats} />
 
             <div className="body">
-                <LeadsList leads={leads} selectedId={selectedId} onSelect={setSelectedId} />
+                <LeadsList leads={leads} selectedId={selectedId} onSelect={handleSelect} />
                 <div className="right-panel">
                     <ChatWindow
                         lead={selectedLead}

@@ -11,6 +11,14 @@ A WhatsApp CRM backend where incoming customer messages are answered by an AI ag
 | Dashboard (Vite) | `:5173` | `npm run dev` |
 | MongoDB / Redis | `:27017` / `:6379` | `docker compose up -d` |
 
+## 🎬 Demo & submission
+
+| Item | Where |
+|---|---|
+| **Video walkthrough** (~5–6 min: simulation → Test 5 dashboard check → code walkthrough) | [Google Drive](https://drive.google.com/file/d/1p4o9p7a9oTc_7zhTNDlra5hOIufwjcOw/view?usp=sharing) |
+| Simulation report (`npm run simulate`) | [`simulation-report.txt`](simulation-report.txt) |
+| Dashboard screenshots | [`screenshot/`](screenshot/) |
+
 ---
 
 ## 1. Run it — step by step
@@ -277,7 +285,8 @@ From the assignment's bonus list:
 | **Debounce** | 3-second trailing debounce + dedup key `lead-<leadId>`: a lead sending 3 messages within 3 s gets **one combined reply** instead of 3 (see §3) |
 | **Stats cards** | `GET /api/stats` powers the dashboard header: total leads, AI replies today, average reply time, fallback count |
 | **Human reply from dashboard** | With AI OFF for a lead, the owner types a reply in the chat window — saved as `sender:"human"` and written through the mock sender |
+| **Unread badge** | WhatsApp-style green counter on each lead: `unreadCount` = customer messages newer than `lastOpenedAt`; opening the chat marks it read (instantly on click, confirmed on next 3 s poll) |
 
-Dashboard proof: [`screenshot/`](screenshot/) shows all three (stat cards, AI toggle, human replies tagged `HUMAN` in the chat).
+Dashboard proof: [`screenshot/`](screenshot/) shows stat cards, AI toggle, and human replies tagged `HUMAN` in the chat.
 
 

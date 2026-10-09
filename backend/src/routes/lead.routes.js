@@ -50,7 +50,16 @@ router.get("/leads", async (req, res) => {
     ]);
     const byLead = new Map(lastMsgs.map((m) => [String(m._id), m]));
 
-    const items = leads.map((l) => {
+    // Unread = customer messages that arrived after the owner last opened this chat
+    const unreadCounts = await Promise.all(
+        leads.map((l) => {
+            const filter = { accountId, leadId: l._id, direction: "in" };
+            if (l.lastOpenedAt) filter.createdAt = { $gt: l.lastOpenedAt };
+            return Message.countDocuments(filter);
+        })
+    );
+
+    const items = leads.map((l, i) => {
         const last = byLead.get(String(l._id));
         return {
             leadId: l._id,
@@ -60,6 +69,7 @@ router.get("/leads", async (req, res) => {
             humanTakeover: !!l.humanTakeover,
             lastMessageText: last ? last.text : "",
             lastMessageAt: (last ? last.at : l.lastMessageAt) || null,
+            unreadCount: unreadCounts[i],
         };
     });
 
@@ -80,6 +90,9 @@ router.get("/leads/:leadId/messages", async (req, res) => {
     const messages = await Message.find({ accountId: req.accountId, leadId: lead._id })
         .sort({ createdAt: 1, _id: 1 })
         .lean();
+
+    // Opening the chat marks everything as read
+    await Lead.updateOne({ _id: lead._id, accountId: req.accountId }, { $set: { lastOpenedAt: new Date() } });
 
     res.json({
         lead: {
