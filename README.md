@@ -4,7 +4,7 @@
 ![Express](https://img.shields.io/badge/Express-4.x-000000?logo=express&logoColor=white)
 ![MongoDB](https://img.shields.io/badge/MongoDB-7.x-47A248?logo=mongodb&logoColor=white)
 ![Redis](https://img.shields.io/badge/Redis-BullMQ-DC382D?logo=redis&logoColor=white)
-![Python](https://img.shields.io/badge/Python-3.11-FastAPI-3776AB?logo=python&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3.11-3776AB?logo=python&logoColor=white)
 ![React](https://img.shields.io/badge/React-Vite-61DAFB?logo=react&logoColor=black)
 
 A WhatsApp CRM backend where incoming customer messages are answered by an AI agent — per tenant, in order, without duplicates. Meta-style webhooks land on a fast Node.js API, a BullMQ queue debounces and schedules the work, and a Python (FastAPI + LangGraph) agent builds a tenant-scoped prompt and calls Groq to reply.
@@ -18,7 +18,20 @@ A WhatsApp CRM backend where incoming customer messages are answered by an AI ag
 | Dashboard (Vite) | `:5173` | `npm run dev` |
 | MongoDB / Redis | `:27017` / `:6379` | `docker compose up -d` |
 
-**Contents:** [1. Run it](#1-run-it--step-by-step) · [2. Architecture](#2-architecture) · [3. Message order](#3-how-messages-of-the-same-lead-stay-in-order) · [4. Duplicate prevention](#4-how-duplicate-replies-are-prevented) · [5. Tenant isolation](#5-how-tenants-never-see-each-others-data) · [6. Reliability](#6-reliability) · [7. API reference](#7-api-reference) · [8. Data model](#8-data-model) · [9. Simulation](#9-simulation) · [10. Production plan](#10-production-plan--10000-leads-at-once) · [11. Bonus features](#11-bonus-features-done) · [12. Troubleshooting](#12-troubleshooting)
+**Contents:**
+
+1. [Run it — step by step](#1-run-it--step-by-step)
+2. [Architecture](#2-architecture)
+3. [How messages of the same lead stay in order](#3-how-messages-of-the-same-lead-stay-in-order)
+4. [How duplicate replies are prevented](#4-how-duplicate-replies-are-prevented)
+5. [How tenants never see each other's data](#5-how-tenants-never-see-each-others-data)
+6. [Reliability](#6-reliability)
+7. [API reference](#7-api-reference)
+8. [Data model](#8-data-model)
+9. [Simulation](#9-simulation)
+10. [Production plan — 10,000 leads at once](#10-production-plan--10000-leads-at-once)
+11. [Bonus features (done)](#11-bonus-features-done)
+12. [Troubleshooting](#12-troubleshooting)
 
 ## 🎬 Demo & submission
 
